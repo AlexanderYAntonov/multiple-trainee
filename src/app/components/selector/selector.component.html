@@ -1,0 +1,5 @@
+<div class="wrap">
+    <div *ngFor="let answer of answers" class="answer" (click)="select(answer.value)">
+        {{ answer.label }}
+    </div>
+</div>

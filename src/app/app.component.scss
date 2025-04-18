@@ -1,0 +1,30 @@
+.task {
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.img-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cat-image {
+    width: 300px;
+    height: 300px
+}
+
+// .content {
+//     background-image: url("assets/cat01.jpeg");
+//     background-size: cover;
+//     background-repeat: no-repeat;
+//     background-position: center;
+//     height: 100vh;
+// }
