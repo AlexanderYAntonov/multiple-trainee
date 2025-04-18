@@ -24,7 +24,25 @@ export class AppComponent implements OnInit {
 
   public points = 0;
 
-  public answers: Answer[] = [
+  public answers: Answer[] = [];
+
+  public showSuccess = false;
+
+  public showFail = false;
+
+  public catUrl = 'assets/cat01.jpeg';
+
+  private readonly cats: string[] = [
+    'assets/cat01.jpeg',
+    'assets/cat02.jpg',
+    'assets/cat03.jpg',
+    'assets/cat04.webp',
+    'assets/cat05.jpg',
+    'assets/cat06.webp',
+    'assets/cat07.jpg',
+    'assets/cat08.jpg',
+    'assets/wow-cat01.jpeg',
+    'assets/wow-cat02.jpeg',
   ];
 
   public ngOnInit(): void {
@@ -34,14 +52,25 @@ export class AppComponent implements OnInit {
   public onResponse(value: boolean): void {
     if (value) {
       this.points++;
+      this.showSuccess = true;
+      setTimeout(() => this.showSuccess = false, 1000);
     } else {
       this.points--;
+      this.showFail = true;
+      setTimeout(() => this.showFail = false, 1000);
     }
     if (this.points < 0) {
       this.points = 0;
     }
 
+    this.selectPicUrl();
     this.initTask();
+  }
+
+  private selectPicUrl(): void {
+    let index = Math.floor(this.points / 3);
+    if (index > 9) index = 9;
+    this.catUrl = this.cats[index];
   }
 
   private initTask(): void {
@@ -58,6 +87,12 @@ export class AppComponent implements OnInit {
     }
     const rightIndex = Math.floor(Math.random() * 4);
     if (this.operation === 0) {
+      const index = this.answers.findIndex((item) => item.label === this.a * this.b);
+      if (index !== -1) {
+        this.answers[index].value = true;
+        return;
+      }
+
       this.answers[rightIndex] = {
         label: this.a * this.b,
         value: true,
@@ -65,6 +100,13 @@ export class AppComponent implements OnInit {
     } else {
       const c = Math.floor(Math.random() * 11);
       this.a = this.b * c;
+
+      const index = this.answers.findIndex((item) => item.label === c);
+      if (index !== -1) {
+        this.answers[index].value = true;
+        return;
+      }
+
       this.answers[rightIndex] = {
         label: c,
         value: true,

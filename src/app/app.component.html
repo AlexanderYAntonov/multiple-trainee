@@ -1,9 +1,8 @@
-<main class="main">
+<main class="main" [class.success]="showSuccess" [class.fail]="showFail">
   <div class="content">
     <h1 class="title">Тренажер умножения и деления</h1>
     <div class="img-wrap">
-      <img *ngIf="points < 10" src="assets/cat01.jpeg" class="cat-image" />
-      <img *ngIf="points >= 10" src="assets/wow-cat.jpeg" class="cat-image" />
+      <img [src]="catUrl" class="cat-image" />
     </div>
     <app-points [value]="points"></app-points>
     <p class="task">{{ a }} {{ symbols[operation] }} {{ b }} = ?</p>
